@@ -40,7 +40,7 @@ public class Agency {
                     case 2:
                         int test_dis;
                         print_cars(agency);
-                        System.out.println("1)Jeep\n2)Feregata\n3)Toy drone\n4)Army drone\n5)Amph\n6)Biken\n7)Ship Cruise\n0)TO EXIT");
+                        System.out.println("1)Jeep\n2)Feregata\n3)Toy drone\n4)Army drone\n5)Amph\n6)Bike\n7)Ship Cruise\n0)TO EXIT");
                         input = input();
                         temp = make_vehicle(input);
                         index = vehicle_exits(temp, agency);//index of the location of the vehicle in the array
@@ -63,7 +63,7 @@ public class Agency {
                         System.out.println("Distance reseted\nUpdated info:\n");
                         print_cars(agency);
                         break;
-                    //Chage flag:    
+                    //Change flag:
                     case 4:
                         String new_flag;
                         System.out.println("Witch flang would you like to changed to?");

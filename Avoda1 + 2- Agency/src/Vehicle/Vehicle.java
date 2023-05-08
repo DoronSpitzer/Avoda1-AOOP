@@ -25,6 +25,9 @@ public abstract class Vehicle {
     }
     public void distance_reset(){this.totalDistance = 0;}
     public abstract boolean equal(Object other);
-    
-    
+
+
+    public String getVehicleType() {
+        return null;
+    }
 }

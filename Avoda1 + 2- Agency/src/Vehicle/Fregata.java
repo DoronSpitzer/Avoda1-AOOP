@@ -30,6 +30,8 @@ public class Fregata extends Vehicle implements Water, Motor {
         if(wind_dir(wind_dir)){this.wind_dir = true;}
         this.wind_dir = false;
     }
+    public boolean get_WindDirection(){return this.wind_dir;}
+
     public void set_flag(String flag){this.flag = flag;}
     public String get_flag(){return this.flag;}
     public String print_wind(){
