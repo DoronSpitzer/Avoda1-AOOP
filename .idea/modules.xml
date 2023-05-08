@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Avoda1/Avoda1.iml" filepath="$PROJECT_DIR$/Avoda1/Avoda1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Avoda1 + 2- Agency/Avoda1 + 2- Agency.iml" filepath="$PROJECT_DIR$/Avoda1 + 2- Agency/Avoda1 + 2- Agency.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Avoda1 - Agency/Avoda1 - Agency.iml" filepath="$PROJECT_DIR$/Avoda1 - Agency/Avoda1 - Agency.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Avoda1-AOOP.iml" filepath="$PROJECT_DIR$/.idea/Avoda1-AOOP.iml" />
+    </modules>
+  </component>
+</project>
