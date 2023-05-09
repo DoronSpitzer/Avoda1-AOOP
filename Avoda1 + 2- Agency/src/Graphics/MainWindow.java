@@ -20,6 +20,8 @@ import javax.swing.JTextField;
 public class MainWindow extends JFrame implements ActionListener {
     private static final String BACKGROUND_PATH="C:\\Users\\ASUS\\IdeaProjects\\Avoda1-AOOP\\Avoda1 + 2- Agency\\img";
     private ArrayList<Vehicle> vehicleList = new ArrayList<Vehicle>();
+    private ArrayList<ImageIcon> imgList = new ArrayList<ImageIcon>();
+
     private JLabel titleLabel,selectLabel;
     private JComboBox<String> vehicleComboBox,comboBox;
     private JButton nxtButton,vehicleListArea,okButton,displayVehicleListButton;
@@ -87,34 +89,6 @@ public class MainWindow extends JFrame implements ActionListener {
         textfield = new JTextField();
 
         textfield.setEditable(true);
-
-        // creates Buttons
-        btn1 = new JButton("Purchasing");
-        btn2 = new JButton("Test");
-        btn3 = new JButton("Distance reset");
-        btn4 = new JButton("Change flag");
-        btn5 = new JButton("EXIT");
-
-        functionbuttons[0] = btn1;
-        functionbuttons[1] = btn2;
-        functionbuttons[2] = btn3;
-        functionbuttons[3] = btn4;
-        functionbuttons[4] = btn5;
-
-        panel = new JPanel();
-        panel.setBounds(260, 700, 800 , 20);
-        panel.setLayout(new GridLayout(0, 5, 10 ,10));
-
-        panel.add(btn1);
-        panel.add(btn2);
-        panel.add(btn3);
-        panel.add(btn4);
-        panel.add(btn5);
-
-
-        // function to set the title
-        setTitle("lets continue...");
-
     }
 
 
@@ -126,36 +100,24 @@ public class MainWindow extends JFrame implements ActionListener {
             String details = "";
             switch (Objects.requireNonNull(vehicle)) {
                 case "Jeep":
-                    final ImageIcon icon = new ImageIcon("C:\\Users\\ASUS\\IdeaProjects\\Avoda1-AOOP\\Avoda1 + 2- Agency\\img\\option1.jpg");
-                    JOptionPane.showMessageDialog(null, null, "Jeep", JOptionPane.INFORMATION_MESSAGE, icon);
                     details = getJeepDetails();
                     break;
                 case "Fregata":
-                    final ImageIcon icon1 = new ImageIcon("C:\\Users\\ASUS\\IdeaProjects\\Avoda1-AOOP\\Avoda1 + 2- Agency\\img\\fregata.jpg");
-                    JOptionPane.showMessageDialog(null, null, "Fregata", JOptionPane.INFORMATION_MESSAGE, icon1);
                     details = getFREGATADetails();
                     break;
                 case "Toy drone":
-                    final ImageIcon icon2 = new ImageIcon("C:\\Users\\ASUS\\IdeaProjects\\Avoda1-AOOP\\Avoda1 + 2- Agency\\img\\toy-drone.jpg");
-                    JOptionPane.showMessageDialog(null, null, "Toy drone", JOptionPane.INFORMATION_MESSAGE, icon2);
                     details = getToyDroneDetails();
                     break;
                 case "Army drone":
                     details = getArmyDroneDetails();
                     break;
                 case "Amphibious":
-                    final ImageIcon icon4 = new ImageIcon("Avoda1 + 2- Agency/img/Amphibious.jpg");
-                    JOptionPane.showMessageDialog(null, null, "Amphibious", JOptionPane.INFORMATION_MESSAGE, icon4);
                     details = getAmphibiousDetails();
                     break;
                 case "Bike":
-                    final ImageIcon icon5 = new ImageIcon("C:\\Users\\ASUS\\IdeaProjects\\Avoda1-AOOP\\Avoda1 + 2- Agency\\img\\Bike.jpg");
-                    JOptionPane.showMessageDialog(null, null, "Bike", JOptionPane.INFORMATION_MESSAGE, icon5);
                     details = getBikeDetails();
                     break;
                 case "Ship Cruise":
-                    final ImageIcon icon6 = new ImageIcon("C:\\Users\\ASUS\\IdeaProjects\\Avoda1-AOOP\\Avoda1 + 2- Agency\\img\\Cruise11.jpg");
-                    JOptionPane.showMessageDialog(null, null, "Ship Cruise", JOptionPane.INFORMATION_MESSAGE, icon6);
                     details = getShipCruiseDetails();
                     break;
                 case "EXIT":
@@ -207,6 +169,8 @@ public class MainWindow extends JFrame implements ActionListener {
 
 
     private String getJeepDetails() {
+        Vehicle tmp;
+
         JTextField modelNameField = new JTextField();
         JTextField maxSpeedField = new JTextField();
         JTextField engineLifetimeField = new JTextField();
@@ -226,12 +190,18 @@ public class MainWindow extends JFrame implements ActionListener {
             String maxSpeed = maxSpeedField.getText();
             String engineLifetime = engineLifetimeField.getText();
             String fuelUsage = fuelUsageField.getText();
+            tmp = new Jeep(modelName,Integer.parseInt(maxSpeed),Integer.parseInt(engineLifetime),Integer.parseInt(fuelUsage));
+            vehicleList.add(tmp);
+            final ImageIcon jeep = new ImageIcon("C:\\Users\\ASUS\\IdeaProjects\\Avoda1-AOOP\\Avoda1 + 2- Agency\\img\\option1.jpg");
+            imgList.add(jeep);
+            JOptionPane.showMessageDialog(null, null, "jeep", JOptionPane.INFORMATION_MESSAGE, imgList.get(0));
             return "Model name: " + modelName + "\nMax speed: " + maxSpeed + "\nEngine lifetime: " + engineLifetime + "\nFuel usage: " + fuelUsage;
         }
         return null;
     }
 
     private String getFREGATADetails() {
+        Vehicle tmp;
         Vehicle[] vehicleArray = vehicleList.toArray(new Vehicle[0]);
         JTextField modelNameField = new JTextField();
         JTextField windDirectionField = new JTextField();
@@ -252,6 +222,11 @@ public class MainWindow extends JFrame implements ActionListener {
             String windDirection = windDirectionField.getText();
             String maxPass = maxPassField.getText();
             String maxSpeed = maxSpeedField.getText();
+            tmp = new Fregata(modelName,Integer.parseInt(windDirection),Integer.parseInt(maxPass),Integer.parseInt(maxSpeed));
+            vehicleList.add(tmp);
+            final ImageIcon fregata = new ImageIcon("C:\\Users\\ASUS\\IdeaProjects\\Avoda1-AOOP\\Avoda1 + 2- Agency\\img\\fregata.jpg");
+            imgList.add(fregata);
+            JOptionPane.showMessageDialog(null, null, "Fregata", JOptionPane.INFORMATION_MESSAGE, imgList.get(1));
             return "Model name: " + modelName + "\nWind direction: " + windDirection + "\nMax passengers: " + maxPass + "\nMax speed: " + maxSpeed;
         }
         return null;
@@ -260,6 +235,7 @@ public class MainWindow extends JFrame implements ActionListener {
 
 
         private String getToyDroneDetails() {
+        Vehicle tmp;
         JTextField modelNameField = new JTextField();
         JPanel panel = new JPanel(new GridLayout(1, 2));
         panel.add(new JLabel("Model name:"));
@@ -267,6 +243,11 @@ public class MainWindow extends JFrame implements ActionListener {
         int result = JOptionPane.showConfirmDialog(this, panel, "Enter Toy drone details", JOptionPane.OK_CANCEL_OPTION);
         if (result == JOptionPane.OK_OPTION) {
             String modelName = modelNameField.getText();
+            tmp = new drone_toy(modelName);
+            vehicleList.add(tmp);
+            final ImageIcon toyDrone = new ImageIcon("C:\\Users\\ASUS\\IdeaProjects\\Avoda1-AOOP\\Avoda1 + 2- Agency\\img\\toy-drone.jpg");
+            imgList.add(toyDrone);
+            JOptionPane.showMessageDialog(null, null, "toyDrone", JOptionPane.INFORMATION_MESSAGE, imgList.get(2));
             return "Model name: " + modelName;
         }
         return null;
@@ -297,6 +278,7 @@ public class MainWindow extends JFrame implements ActionListener {
 
 
     private String getAmphibiousDetails() {
+        Vehicle tmp;
         JTextField modelNameField = new JTextField();
         JTextField maxSpeedField = new JTextField();
         JTextField maxPassField = new JTextField();
@@ -336,12 +318,18 @@ public class MainWindow extends JFrame implements ActionListener {
             String windDir = windDirField.getText();
             String fuel = fuelField.getText();
             String life = lifeField.getText();
+            tmp = new Amph(modelName,Integer.parseInt(maxSpeed),Integer.parseInt(maxPass),Integer.parseInt(lifetime),Integer.parseInt(wheels),flag,Integer.parseInt(windDir),Integer.parseInt(fuel),Integer.parseInt(life));
+            vehicleList.add(tmp);
+            final ImageIcon amphibious = new ImageIcon("C:\\Users\\ASUS\\IdeaProjects\\Avoda1-AOOP\\Avoda1 + 2- Agency\\img\\Amphibious.jpg");
+            imgList.add(amphibious);
+            JOptionPane.showMessageDialog(null, null, "amphibious", JOptionPane.INFORMATION_MESSAGE, imgList.get(3));
             return "Model name: " + modelName + "\nMax speed: " + maxSpeed + "\nMax passengers: " + maxPass + "\nLifetime: " + lifetime + "\nNumber of wheels: " + wheels + "\nFlag: " + flag + "\nWind direction: " + windDir + "\nFuel: " + fuel + "\nLife: " + life;
         }
         return null;
     }
 
     private String getBikeDetails() {
+        Vehicle tmp;
         JTextField modelNameField = new JTextField();
         JTextField maxSpeedField = new JTextField();
         JTextField lifetimeField = new JTextField();
@@ -361,18 +349,23 @@ public class MainWindow extends JFrame implements ActionListener {
             String maxSpeed = maxSpeedField.getText();
             String lifetime = lifetimeField.getText();
             String road = roadField.getText();
+            tmp = new Bike(modelName,Integer.parseInt(maxSpeed),Integer.parseInt(lifetime),road);
+            vehicleList.add(tmp);
+            final ImageIcon bike = new ImageIcon("C:\\Users\\ASUS\\IdeaProjects\\Avoda1-AOOP\\Avoda1 + 2- Agency\\img\\Bike.jpg");
+            imgList.add(bike);
+            JOptionPane.showMessageDialog(null, null, "bike", JOptionPane.INFORMATION_MESSAGE, imgList.get(3));
             return "Model name: " + modelName + "\nMax speed: " + maxSpeed + "\nLifetime: " + lifetime + "\nRoad: " + road;
         }
         return null;
     }
     private String getShipCruiseDetails() {
+        Vehicle tmp;
         JTextField modelField = new JTextField(10);
         JTextField maxPassField = new JTextField(10);
         JTextField maxSpeedField = new JTextField(10);
         JTextField flagField = new JTextField(10);
         JTextField fuelField = new JTextField(10);
         JTextField lifetimeField = new JTextField(10);
-
         JPanel panel = new JPanel(new GridLayout(6, 2));
         panel.add(new JLabel("Model name:"));
         panel.add(modelField);
@@ -397,6 +390,12 @@ public class MainWindow extends JFrame implements ActionListener {
             String flag = flagField.getText();
             int fuel = Integer.parseInt(fuelField.getText());
             int lifetime = Integer.parseInt(lifetimeField.getText());
+            tmp = new Ship(model,maxPass,maxSpeed,flag,fuel,lifetime);
+            vehicleList.add(tmp);
+            final ImageIcon ship = new ImageIcon("C:\\Users\\ASUS\\IdeaProjects\\Avoda1-AOOP\\Avoda1 + 2- Agency\\img\\Cruise11.jpg");
+            imgList.add(ship);
+            JOptionPane.showMessageDialog(null, null, "Ship Cruise", JOptionPane.INFORMATION_MESSAGE, imgList.get(3));
+
             return "Model: " + model + "\nMaximum passengers: " + maxPass +
                     "\nMaximum speed: " + maxSpeed + "\nFlag: " + flag +
                     "\nFuel usage: " + fuel + "\nEngine lifetime: " + lifetime;
