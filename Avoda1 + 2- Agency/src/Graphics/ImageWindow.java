@@ -1,4 +1,5 @@
 package Graphics;
+import Vehicle.*;
 import java.awt.image.*;
 import java.net.*;
 import java.awt.*;
@@ -12,10 +13,19 @@ import java.awt.BorderLayout;
 import java.awt.Frame;
 import java.awt.Button;
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Objects;
 
 // class extends JFrame
 public class ImageWindow extends JFrame  {
+
+
+
+    private ArrayList<Vehicle> vehicleList1 = new ArrayList<Vehicle>();
+
+    private ArrayList<ImageIcon> imgList1 = new ArrayList<ImageIcon>();
+
+
 
     private JFrame frame;
     private JTextField textfield;
@@ -28,6 +38,23 @@ public class ImageWindow extends JFrame  {
     // Constructor of BorderDemo class.
     public ImageWindow(ImageIcon imageIcon, String imageDescription)
     {
+
+        Vehicle b = new Bike("sub",  120,  8, null);
+        Vehicle j = new Jeep("toyoya", 80,  2, 8);
+        Vehicle a = new Amph("J", 120,8,2,4,"is",100,90,2);
+
+        vehicleList1.add(b);
+        vehicleList1.add(j);
+        vehicleList1.add(a);
+
+        final ImageIcon jeep = new ImageIcon("C:\\Users\\ASUS\\IdeaProjects\\Avoda1-AOOP\\Avoda1 + 2- Agency\\img\\option1.jpg","Jeep");
+        final ImageIcon amphibious = new ImageIcon("C:\\Users\\ASUS\\IdeaProjects\\Avoda1-AOOP\\Avoda1 + 2- Agency\\img\\Amphibious.jpg");
+        final ImageIcon bike = new ImageIcon("C:\\Users\\ASUS\\IdeaProjects\\Avoda1-AOOP\\Avoda1 + 2- Agency\\img\\Bike.jpg");
+        imgList1.add(bike);
+        imgList1.add(jeep);
+        imgList1.add(amphibious);
+
+
         // set the layout
 
         frame = new JFrame("Next page");
