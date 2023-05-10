@@ -24,7 +24,7 @@ public class MainWindow extends JFrame implements ActionListener {
 
     private JLabel titleLabel,selectLabel;
     private JComboBox<String> vehicleComboBox,comboBox;
-    private JButton nxtButton,vehicleListArea,okButton,displayVehicleListButton;
+    private JButton nxtButton,vehicleListArea,okButton;
     private JPanel mainPanel,detailsPanel;
 
     //imagewindow
@@ -49,13 +49,14 @@ public class MainWindow extends JFrame implements ActionListener {
     private final JLabel imageLabelBike = new JLabel(new ImageIcon(bike));
 
 
-
-    private JMenu background;
+    private IconDemoApp dialogChooseImage;
+    private JButton imagesButton;
+    /*private JMenu background;
     private JMenuItem image1;
     private JMenuItem image2;
     private JMenuItem image3;
     private JMenuItem upload;
-
+*/
 
     public MainWindow(ImageIcon imageIcon, String imageDescription) {
 
@@ -77,7 +78,9 @@ public class MainWindow extends JFrame implements ActionListener {
         vehicleListArea.addActionListener(this);
         okButton.addActionListener(this);
         nxtButton.addActionListener(this);
-        JMenu background=new JMenu("Background");
+        //JMenu background=new JMenu("Background");
+        imagesButton = new JButton("images");
+        imagesButton.addActionListener(this);
 
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayout(9, 2));
@@ -86,8 +89,11 @@ public class MainWindow extends JFrame implements ActionListener {
         mainPanel.add(vehicleComboBox);
         mainPanel.add(okButton);
         mainPanel.add(nxtButton);
-        mainPanel.add(background);
+        mainPanel.add(imagesButton);
+        //mainPanel.add(background);
 
+        //mainPanel.add(dialogChooseImage);
+/*
         image1=new JMenuItem("Image1");
         background.add(image1);
         image1.addActionListener(this);
@@ -100,7 +106,7 @@ public class MainWindow extends JFrame implements ActionListener {
         upload=new JMenuItem("upload");
         background.add(upload);
         upload.addActionListener(this);
-
+*/
 
 
         frame =new JFrame("frame");
@@ -130,7 +136,7 @@ public class MainWindow extends JFrame implements ActionListener {
     }
 
 
-
+/*
     public void MyFrame(String s) {
         if(s.equals("Jeep"))
         {
@@ -160,20 +166,13 @@ public class MainWindow extends JFrame implements ActionListener {
             setVisible(true);
         }
 
-
+*/
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == okButton) {
             String vehicle = (String) vehicleComboBox.getSelectedItem();
             String details = "";
             switch (Objects.requireNonNull(vehicle)) {
                 case "Jeep":
-                    /*if (e.getSource() == background) {
-                        if(e.getSource() == image1)
-                        {
-                            image1.isShowing();
-                        }
-                    }
-                    MyFrame("Jeep");*/
                     details = getJeepDetails();
                     break;
                 case "Fregata":
@@ -214,9 +213,9 @@ public class MainWindow extends JFrame implements ActionListener {
                     }
                 }
             }
-            if (e.getSource() == btn1)
-                details = getJeepDetails();
         }
+        if (e.getSource() == imagesButton)
+            dialogChooseImage = new IconDemoApp();
 
     }
 
@@ -269,7 +268,6 @@ public class MainWindow extends JFrame implements ActionListener {
             tmp = new Jeep(modelName,Integer.parseInt(maxSpeed),Integer.parseInt(engineLifetime),Integer.parseInt(fuelUsage));
             vehicleList.add(tmp);
             imgList.add(jeep);
-            jeep.flush();
             //JOptionPane.showMessageDialog(null, null, "jeep", JOptionPane.INFORMATION_MESSAGE, imgList.get(0));
             return "Model name: " + modelName + "\nMax speed: " + maxSpeed + "\nEngine lifetime: " + engineLifetime + "\nFuel usage: " + fuelUsage;
         }
