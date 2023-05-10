@@ -50,6 +50,13 @@ public class MainWindow extends JFrame implements ActionListener {
 
 
 
+    private JMenu background;
+    private JMenuItem image1;
+    private JMenuItem image2;
+    private JMenuItem image3;
+    private JMenuItem upload;
+
+
     public MainWindow(ImageIcon imageIcon, String imageDescription) {
 
         // Add action listener to the display vehicle list button
@@ -70,6 +77,8 @@ public class MainWindow extends JFrame implements ActionListener {
         vehicleListArea.addActionListener(this);
         okButton.addActionListener(this);
         nxtButton.addActionListener(this);
+        JMenu background=new JMenu("Background");
+
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayout(9, 2));
         mainPanel.add(titleLabel);
@@ -77,6 +86,22 @@ public class MainWindow extends JFrame implements ActionListener {
         mainPanel.add(vehicleComboBox);
         mainPanel.add(okButton);
         mainPanel.add(nxtButton);
+        mainPanel.add(background);
+
+        image1=new JMenuItem("Image1");
+        background.add(image1);
+        image1.addActionListener(this);
+        image2=new JMenuItem("image2");
+        background.add(image2);
+        image2.addActionListener(this);
+        image3=new JMenuItem("image3");
+        background.add(image3);
+        image3.addActionListener(this);
+        upload=new JMenuItem("upload");
+        background.add(upload);
+        upload.addActionListener(this);
+
+
 
         frame =new JFrame("frame");
         JPanel panel1 =new JPanel();
@@ -105,10 +130,12 @@ public class MainWindow extends JFrame implements ActionListener {
     }
 
 
-/*
+
     public void MyFrame(String s) {
         if(s.equals("Jeep"))
         {
+            String details = "";
+
             setSize(1000, 800);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -122,44 +149,16 @@ public class MainWindow extends JFrame implements ActionListener {
             add(imageLabelJeep);
             add(imageLabelBike);
             add(imageLabelAmphibious);
+            btn1.addActionListener(this);
+
+            mainPanel.add(btn1);
+        }
+
+
 
             // Display the JFrame
             setVisible(true);
         }
-    }
-*/
-
-
-
-
-    public void MyFrame(String s) {
-        if(s.equals("Jeep")) {
-            setSize(1000, 800);
-            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-            // Set up the layout to display images in a grid
-            JPanel gridPanel = new JPanel(new GridLayout(1, 3));
-            add(gridPanel, BorderLayout.CENTER);
-
-            // Set up image labels with the same size and add them to the grid
-            ImageIcon jeepIcon = new ImageIcon(getClass().getResource("jeep.jpg"));
-            ImageIcon bikeIcon = new ImageIcon(getClass().getResource("bike.jpg"));
-            ImageIcon amphibiousIcon = new ImageIcon(getClass().getResource("amphibious.jpg"));
-            JLabel imageLabelJeep = new JLabel(jeepIcon);
-            JLabel imageLabelBike = new JLabel(bikeIcon);
-            JLabel imageLabelAmphibious = new JLabel(amphibiousIcon);
-            int imageSize = 300;
-            imageLabelJeep.setPreferredSize(new Dimension(imageSize, imageSize));
-            imageLabelBike.setPreferredSize(new Dimension(imageSize, imageSize));
-            imageLabelAmphibious.setPreferredSize(new Dimension(imageSize, imageSize));
-            gridPanel.add(imageLabelJeep);
-            gridPanel.add(imageLabelBike);
-            gridPanel.add(imageLabelAmphibious);
-
-            // Display the JFrame
-            setVisible(true);
-        }
-    }
 
 
     public void actionPerformed(ActionEvent e) {
@@ -168,7 +167,13 @@ public class MainWindow extends JFrame implements ActionListener {
             String details = "";
             switch (Objects.requireNonNull(vehicle)) {
                 case "Jeep":
-                    MyFrame("Jeep");
+                    /*if (e.getSource() == background) {
+                        if(e.getSource() == image1)
+                        {
+                            image1.isShowing();
+                        }
+                    }
+                    MyFrame("Jeep");*/
                     details = getJeepDetails();
                     break;
                 case "Fregata":
@@ -209,7 +214,10 @@ public class MainWindow extends JFrame implements ActionListener {
                     }
                 }
             }
+            if (e.getSource() == btn1)
+                details = getJeepDetails();
         }
+
     }
 
 
