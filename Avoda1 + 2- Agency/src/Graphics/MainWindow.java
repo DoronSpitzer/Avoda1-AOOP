@@ -51,12 +51,7 @@ public class MainWindow extends JFrame implements ActionListener {
 
     private IconDemoApp dialogChooseImage;
     private JButton imagesButton;
-    /*private JMenu background;
-    private JMenuItem image1;
-    private JMenuItem image2;
-    private JMenuItem image3;
-    private JMenuItem upload;
-*/
+
 
     public MainWindow(ImageIcon imageIcon, String imageDescription) {
 
@@ -136,37 +131,6 @@ public class MainWindow extends JFrame implements ActionListener {
     }
 
 
-/*
-    public void MyFrame(String s) {
-        if(s.equals("Jeep"))
-        {
-            String details = "";
-
-            setSize(1000, 800);
-            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-            // Add the image label to the frame
-            imageLabelJeep.setSize(150,100);
-            imageLabelJeep.setBounds(150,100,300,300);
-            imageLabelBike.setSize(600,100);
-            imageLabelBike.setBounds(500,100,300,300);
-            imageLabelAmphibious.setSize(50,100);
-            imageLabelAmphibious.setBounds(20,100,300,300);
-            add(imageLabelJeep);
-            add(imageLabelBike);
-            add(imageLabelAmphibious);
-            btn1.addActionListener(this);
-
-            mainPanel.add(btn1);
-        }
-
-
-
-            // Display the JFrame
-            setVisible(true);
-        }
-
-*/
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == okButton) {
             String vehicle = (String) vehicleComboBox.getSelectedItem();
@@ -216,7 +180,6 @@ public class MainWindow extends JFrame implements ActionListener {
         }
         if (e.getSource() == imagesButton)
             dialogChooseImage = new IconDemoApp();
-
     }
 
 

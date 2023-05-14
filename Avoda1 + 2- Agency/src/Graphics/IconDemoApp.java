@@ -3,8 +3,8 @@ package Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
-import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
+import java.util.EventListener;
 import java.util.List;
 import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
@@ -95,6 +95,27 @@ public class IconDemoApp extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     JDialog dialog = (JDialog) button.getTopLevelAncestor();
+                    dialog.dispose();
+                    int index = buttonPanel.getComponentZOrder(button);
+
+                    // Get the file name and path of the clicked image
+                    String fileName = imageFileNames[index];
+                    String filePath = imagedir + fileName;
+
+                    // Create a file object representing the clicked image
+                    File clickedImage = new File(filePath);
+
+                    // Display a file chooser dialog and let the user choose where to save the image
+                    JFileChooser fileChooser = new JFileChooser();
+                    fileChooser.setDialogTitle("Save Image");
+                    int userSelection = fileChooser.showSaveDialog(IconDemoApp.this);
+
+                    if (userSelection == JFileChooser.APPROVE_OPTION) {
+                        // Get the selected file and save the clicked image to it
+                        File fileToSave = fileChooser.getSelectedFile();
+                        BufferedImage image = null;
+                        File outputFile = new File(fileToSave.getAbsolutePath() + ".jpg");
+                    }
                     dialog.dispose();
                 }
             });
@@ -236,6 +257,8 @@ public class IconDemoApp extends JFrame {
         public void actionPerformed(ActionEvent e) {
             photographLabel.setIcon(displayPhoto);
             setTitle("Icon Demo: " + getValue(SHORT_DESCRIPTION).toString());
+            // Close the dialog containing the image buttons
+
         }
 
     }
