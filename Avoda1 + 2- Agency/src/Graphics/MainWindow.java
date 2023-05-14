@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.net.*;
@@ -24,7 +26,7 @@ public class MainWindow extends JFrame implements ActionListener {
 
     private JLabel titleLabel,selectLabel;
     private JComboBox<String> vehicleComboBox,comboBox;
-    private JButton nxtButton,vehicleListArea,okButton;
+    private JButton vehicleListArea,okButton;
     private JPanel mainPanel,detailsPanel;
 
     //imagewindow
@@ -49,6 +51,9 @@ public class MainWindow extends JFrame implements ActionListener {
     private final JLabel imageLabelBike = new JLabel(new ImageIcon(bike));
 
 
+    private ImageWindow nextPage;
+    private JButton nxtButton;
+
     private IconDemoApp dialogChooseImage;
     private JButton imagesButton;
 
@@ -69,11 +74,10 @@ public class MainWindow extends JFrame implements ActionListener {
         vehicleComboBox = new JComboBox<>(vehicles);
         okButton = new JButton("OK");
         nxtButton = new JButton("next");
+        nxtButton.addActionListener(this);
         vehicleListArea = new JButton("See list");
         vehicleListArea.addActionListener(this);
         okButton.addActionListener(this);
-        nxtButton.addActionListener(this);
-        //JMenu background=new JMenu("Background");
         imagesButton = new JButton("images");
         imagesButton.addActionListener(this);
 
@@ -85,23 +89,6 @@ public class MainWindow extends JFrame implements ActionListener {
         mainPanel.add(okButton);
         mainPanel.add(nxtButton);
         mainPanel.add(imagesButton);
-        //mainPanel.add(background);
-
-        //mainPanel.add(dialogChooseImage);
-/*
-        image1=new JMenuItem("Image1");
-        background.add(image1);
-        image1.addActionListener(this);
-        image2=new JMenuItem("image2");
-        background.add(image2);
-        image2.addActionListener(this);
-        image3=new JMenuItem("image3");
-        background.add(image3);
-        image3.addActionListener(this);
-        upload=new JMenuItem("upload");
-        background.add(upload);
-        upload.addActionListener(this);
-*/
 
 
         frame =new JFrame("frame");
@@ -166,16 +153,11 @@ public class MainWindow extends JFrame implements ActionListener {
                 // Do something with the vehicle and details
                 JOptionPane.showMessageDialog(this, "Vehicle " + vehicle + " added with details:\n" + details);
             }
-            if (e.getSource() == nxtButton) {
-                {
-                    JDialog d = new JDialog(frame, "dialog Box");
-                    d.add(panel);
-                    d.add(textfield);
-                    d.setVisible(true);
-                    if (e.getSource() == btn1) {
-                        JOptionPane.showMessageDialog(this, "Congratz! The purchase was made successfully!");
-                    }
-                }
+        }
+        if (e.getSource() == nxtButton) {
+            {
+                ImageIcon imageIcon = new ImageIcon("C:\\Users\\ASUS\\IdeaProjects\\Avoda1-AOOP\\Avoda1 + 2- Agency\\img\\option1.jpg");
+                nextPage = new ImageWindow(imageIcon,"ship");
             }
         }
         if (e.getSource() == imagesButton)

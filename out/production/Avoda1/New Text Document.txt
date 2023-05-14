@@ -1,0 +1,109 @@
+import Vehicle.;
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class Agency {
+    public static void main(String[] args)
+    {
+        A way to do dynamic aray without an input of size from the
+        ArrayListVehicle arr = new ArrayListVehicle();
+        System.out.println(Welcome to the Vehicle Agency);
+        System.out.println(What kind of vehicle would you like to add to the Agency);
+        System.out.println(1)Jeepn2)Feregatan3)Toy dronen4)Army dronen0)TO EXIT);
+        int cho = input();
+        String name;
+        int input;
+        Vehicle temp;
+        Scanner sc = new Scanner(System.in);
+        do
+        {
+            switch(cho)
+            {
+                case 1
+                    System.out.println(You choose JEEP, please input(orderwise) Model name, Max speed, Engine lifetime, and Fuel usage);
+                    temp = new Jeep(name = sc.next(), input = sc.nextInt(), input = sc.nextInt(),input = sc.nextInt());
+                    arr.add(temp);
+                    break;
+                case 2
+                    System.out.println(You choose FREGATA, please input(orderwise) Model name, Wind direction , Max passenger and Max speed);
+                    temp = new Fregata(name = sc.next(), input = sc.nextInt(),input = sc.nextInt(), input = sc.nextInt());
+                    arr.add(temp);
+                    break;
+                case 3
+                    System.out.println(You choose Toy drone, please Model name);
+                    temp = new drone_toy(name = sc.next());
+                    arr.add(temp);
+                    break;
+                case 4
+                    System.out.print(You choose Army drone);
+                    temp = new drone_spy();
+                    arr.add(temp);
+                    break;
+                default
+                    break;
+            }
+            System.out.println(1)Jeepn2)Feregatan3)Toy dronen4)Army dronen0)TO EXIT);
+            cho = input();
+        }while(cho != 0);
+        main_menu();
+        cho = input_main_menu();
+        do {
+            switch(cho)
+            {   Purchasing vehicle
+                case 1
+                System.out.println(arr);
+                
+
+
+
+
+            }
+
+            cho = input_main_menu();
+        } while (cho != 0);
+
+
+       
+        System.out.println(arr);
+        sc.close();
+    }
+    
+    public static int input()
+    {
+        Scanner sc = new Scanner(System.in);
+        int cho = sc.nextInt();
+        while(cho  4 && cho  0){
+            System.out.println(Input out of bounds, try again);
+            cho = sc.nextInt();
+        }
+        return cho;
+    }
+    public static void main_menu()
+    {
+        System.out.println(n1)For purchase a vehiclen2)For test driven3)For erasing distance traveln4)Change marine vehicle flangn);
+
+    }
+
+    Check if the input is valid and return the choosen number
+    public static int input_main_menu()
+    {
+        Scanner sc = new Scanner(System.in);
+        int cho = sc.nextInt();
+        while(cho  5 && cho  0){
+            System.out.println(Input out of bounds, try again);
+            cho = sc.nextInt();
+        }
+        return cho;
+    }
+    public Vehicle make_vehicle(int num)
+    {
+        String name;
+        int input;
+        switch(num)
+        {
+            case 1
+                 
+        }
+
+    }
+}
