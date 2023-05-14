@@ -9,10 +9,7 @@ import javax.imageio.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.awt.BorderLayout;
-import java.awt.Frame;
-import java.awt.Button;
-import java.awt.Color;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -33,6 +30,9 @@ public class ImageWindow extends JFrame  {
     private JButton[] functionbuttons = new JButton[5];
     private JPanel panel;
     private JLabel label;
+    private static final String[] names = {"ISREAL", "USA", "GERMANY", "ITLAY", "GREECE", "SOMALIA", "Straw Hat Pirates"};
+    private  JComboBox<String> combo;
+
 
 
     // Constructor of BorderDemo class.
@@ -71,11 +71,11 @@ public class ImageWindow extends JFrame  {
         textfield.setEditable(false);
 
         // creates Buttons
-         btn1 = new JButton("Purchasing");
-         btn2 = new JButton("Test");
-         btn3 = new JButton("Distance reset");
-         btn4 = new JButton("Change flag");
-         btn5 = new JButton("EXIT");
+        btn1 = new JButton("Purchasing");
+        btn2 = new JButton("Test");
+        btn3 = new JButton("Distance reset");
+        btn4 = new JButton("Change flag");
+        btn5 = new JButton("EXIT");
 
         functionbuttons[0] = btn1;
         functionbuttons[1] = btn2;
@@ -93,6 +93,62 @@ public class ImageWindow extends JFrame  {
         panel.add(btn4);
         panel.add(btn5);
 
+        btn1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ImageWindow.destroy();
+            }
+        });
+
+        btn2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                JPanel p = new JPanel(new GridLayout(1, 1));
+                JTextField arg;
+                p.add(new JLabel("How many KM?"));
+                p.add(arg = new JTextField());
+                int test = JOptionPane.showConfirmDialog(btn2, p, "Enter Vehicle details", JOptionPane.OK_CANCEL_OPTION);
+                label.setText("How many KM do you want to ride?");
+                if(test == JOptionPane.OK_OPTION)
+                {
+                    int index = 0;//temporary, only for example
+                    String txt = arg.getText();
+                    int num = Integer.parseInt(txt);//convert to int
+                    vehicleList1.get(index).distance_update(num);
+                    JOptionPane.showMessageDialog(null,"Drive safe!","info", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+
+
+        btn3.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                agency_distance_reset(vehicleList1);
+                JOptionPane.showMessageDialog(null,"The distance has deleted!","info", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        });
+
+        btn4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                combo = new JComboBox<String>(names);
+                JOptionPane.showMessageDialog(null, combo, "Flags", JOptionPane.PLAIN_MESSAGE);
+                String selectedOption = (String) combo.getSelectedItem();
+                flag_changed(selectedOption, vehicleList1);
+                JOptionPane.showMessageDialog(null,"The flags has changed!","info", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        btn5.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0); // terminate the JVM process
+            }
+        });
+
         frame.add(panel);
         frame.add(textfield);
         frame.setVisible(true);
@@ -101,6 +157,17 @@ public class ImageWindow extends JFrame  {
 
     }
 
+    private static void destroy() {
+        MainWindow mainWindow = new MainWindow(null,null);
+    }
+
+    public static void agency_distance_reset(ArrayList<Vehicle> arr)
+    {
+        for(int i = 0; i < arr.size(); i++)
+        {
+            arr.get(i).distance_reset();
+        }
+    }
 
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == btn1)
@@ -109,6 +176,23 @@ public class ImageWindow extends JFrame  {
         }
     }
 
+    public static void flag_changed(String flag, ArrayList<Vehicle> arr)
+    {
+        /*Change all the water & ship flag
+         * @params: a: String object, b: Array of vehcile
+         */
+        for(int i = 0; i < arr.size(); i++)
+        {
+            if(arr.get(i) instanceof Water)
+            {
+                ((Water)arr.get(i)).set_flag(flag);
+            }
+            if(arr.get(i) instanceof Ship)
+            {
+                ((Ship)arr.get(i)).set_flag(flag);
+            }
+        }
+    }
 
     // Main Method
     public static void main(String args[])
@@ -118,5 +202,19 @@ public class ImageWindow extends JFrame  {
         String imageDescription = "This is an image.";
         ImageWindow window = new ImageWindow(imageIcon, imageDescription);
     }
-}
 
+    private class combo_flag extends JFrame{
+
+        private static final String[] names = {"ISREAL", "USA", "GERMANY", "ITLAY", "GREECE", "SOMALIA", "Straw Hat Pirates"};
+        private final JComboBox<String> combo;
+        public combo_flag(){
+            super("FLAGS:");
+            this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.PAGE_AXIS));
+            combo = new JComboBox<String>(names);
+            combo.setSelectedIndex(0);
+            combo.setPopupVisible(true);
+        }
+        public String get_flag(){return (String)combo.getSelectedItem();}
+    }
+
+}
